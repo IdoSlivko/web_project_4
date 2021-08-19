@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./pages/index.css">
+	<title>Around the U.S.</title>
+</head>
+
+<body class="root">
+
+	<div class="page">
+
+		<section class="popup popup_opened">
+			<form class="popup__container">
+				<h3 class="popup__title">Edit profile</h3>
+				<input class="popup__input popup__input_full-name" type="text" maxlength="30" placeholder="Full Name"  aria-label="Enter full name" required>
+				<input class="popup__input popup__input_about" type="text" maxlength="30" placeholder="About Me" aria-label="Enter about" required>
+				<button class="popup__submit" type="submit">Save</button>
+				<button class="popup__close-button" aria-label="close popup"></button>
+			</form>
+		</section>
+
+		<header class="header">
+			<div class="logo"></div>
+		</header>
+
+		<main class="content">
+
+			<section class="profile">
+				<div class="profile__info">
+					<img class="profile__image" src="./images/jacques_cousteau.jpg" alt="A portrait of Jacques Cousteau">
+					<div class="profile__main-text">
+						<div class="profile__text">
+							<h1 class="profile__name">Jacques Cousteau</h1>
+							<button class="profile__edit-profile" aria-label="edit profile"></button>
+						</div>
+						<h2 class="profile__occupation">Explorer</h2>
+					</div>
+				</div>
+				<button class="profile__add-photo" aria-label="add photo"></button>
+			</section>
+
+			<section class="elements">
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/yosemite_valley.jpg" alt="A picture of Yosemite Valley's Merced River">
+					<div class="elements__description">
+						<h3 class="elements__title">Yosemite Valley</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/lake_louise.jpg" alt="A picture of Lake Louise">
+					<div class="elements__description">
+						<h3 class="elements__title">Lake Louise</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/bald_mountains.jpg" alt="A picture of sunset at Bald Mountains">
+					<div class="elements__description">
+						<h3 class="elements__title">Bald Mountains</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/latemar.jpg" alt="A picture of mount Latemar">
+					<div class="elements__description">
+						<h3 class="elements__title">Latemar</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/vanoise_nationa.jpg" alt="A picture of a part of the Vanoise Massif mountain range of the Graian Alps">
+					<div class="elements__description">
+						<h3 class="elements__title">Vanoise National Park</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+				<div class="elements__item">
+					<img class="elements__image" src="./images/lago_di_braies.jpg" alt="A picture of Lake Braies (Lago di Braies) in the Prags Dolomites">
+					<div class="elements__description">
+						<h3 class="elements__title">Lago di Braies</h3>
+						<button class="elements__like-button" aria-label="like button"></button>
+					</div>
+				</div>
+
+			</section>
+
+		</main>
+
+		<footer class="footer">
+			<p class="footer__copyright">&copy; 2021 Around The U.S.</p>
+		</footer>
+
+	</div>
+
+	<script>
+
+		let editBtn = document.querySelector('.profile__edit-profile');
+		let closePopBtn = document.querySelector('.popup__close-button');
+
+		let popDisplay = document.querySelector('.popup_opened');
+
+		let nameInput = document.querySelector('.popup__input_full-name');
+		let aboutInput = document.querySelector('.popup__input_about');
+
+		let name = document.querySelector('.profile__name');
+		let about = document.querySelector('.profile__occupation');
+
+		let popContain = document.querySelector('.popup__container');
+
+		function openEditProfile()
+		{
+			popDisplay.style.display = 'block';
+
+			nameInput.focus();
+			nameInput.value = name.textContent;
+			aboutInput.value = about.textContent;
+		}
+
+		function closeEditProfile(evt)
+		{
+			evt.preventDefault();
+
+			popDisplay.style.display = 'none';
+		}
+
+		function handleSubmit(evt)
+		{
+			evt.preventDefault();
+
+			name.textContent = nameInput.value;
+			about.textContent = aboutInput.value;
+
+			popDisplay.style.display = 'none';
+		}
+
+		editBtn.addEventListener('click', openEditProfile);
+		closePopBtn.addEventListener('click', closeEditProfile);
+		popContain.addEventListener('submit', handleSubmit);
+
+	</script>
+
+</body>
+</html>

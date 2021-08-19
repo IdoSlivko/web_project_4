@@ -1,0 +1,27 @@
+.profile__occupation {
+	margin: 8px 0 0;
+	padding: 0;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1;
+	max-width: 370px;
+	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media all and (max-width: 768px) {
+	
+	.profile__occupation {
+		max-width: 150px;
+	}
+
+}
+
+@media all and (max-width: 320px) {
+
+	.profile__occupation {
+		font-size: 14px;
+	}
+	
+}

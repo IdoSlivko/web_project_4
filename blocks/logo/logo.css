@@ -1,0 +1,25 @@
+.logo {
+	width: 173px;
+	height: 33px;
+	background-image: url(../../images/logo_around_the_us.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+@media all and (max-width: 768px) {
+
+	.logo {
+		width: 126px;
+		height: 24px;
+	}
+
+}
+
+@media all and (max-width: 320px) {
+
+	.logo {
+		margin-left: 27px;
+	}
+
+}

@@ -1,0 +1,48 @@
+.page {
+	max-width: 1280px;
+	min-width: 320px;
+  margin: 0 auto;
+	padding: 0 200px;
+	font-family: 'inter', 'Helvetica Neue', 'Arial', sans-serif;
+	color: #fff;
+}
+
+@media screen and (max-width: 1130px) {
+
+	.page {
+		padding: 0 150px;
+	}
+
+}
+
+@media screen and (max-width: 930px) {
+
+	.page {
+		padding: 0 100px;
+	}
+
+}
+
+@media screen and (max-width: 810px) {
+
+	.page {
+		padding: 0 50px;
+	}
+
+}
+
+@media all and (max-width: 768px) {
+
+	.page {
+		padding: 0;
+	}
+
+}
+
+@media all and (max-width: 320px) {
+
+	.page {
+		padding: 0;
+	}
+
+}

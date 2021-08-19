@@ -1,0 +1,28 @@
+.profile__add-photo {
+	align-self: center;
+	width: 150px;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	background-color: initial;
+	background-image: url(../../../images/edit_plus.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto;
+	border: 2px solid rgba(255, 255, 255, 1);
+	border-radius: 2px;
+}
+
+.profile__add-photo:hover {
+	cursor: pointer;
+	background-image: url(../../../images/edit_plus_hover.svg);
+	border: 2px solid rgba(255, 255, 255, .6);
+}
+
+@media all and (max-width: 320px) {
+
+	.profile__add-photo {
+		width: 100%;
+	}
+	
+}

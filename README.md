@@ -1,16 +1,15 @@
-# Project 4: Around The U.S.
+# Around The U.S. /
+A Single-Page Website  
+[Link to the project on GitHub Pages](https://idoslivko.github.io/web_project_3/)
 
-### Overview
+---   
 
-* Figma
-* Images
+> Overview
+* Self-training project, developed by _**[Practicum100 and Yandex Web Developer Program](https://practicum.yandex.com/)**_, executed by me.  
+* This single-page website designed according to the **B**lock-**E**lement-**M**odifier (BEM) methodology, which means that it contains several blocks ("units") that each one of them functions as a "self-entity" - it can be reuse and/or can be impliment elsewhere.
+In addition, all the elements are displayed correctly on popular screen sizes.  
 
-**Figma**
-
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+---
+> Technologies
+* Advenced HTML & CSS
+* Basic JavaScript
