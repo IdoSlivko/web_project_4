@@ -15,7 +15,7 @@ let popContain = document.querySelector('.popup__container');
 
 function openEditProfile()
 {
-	popDisplay.style.display = 'block';
+	popDisplay.style.display = 'flex';
 
 	nameInput.focus();
 	nameInput.value = name.textContent;
