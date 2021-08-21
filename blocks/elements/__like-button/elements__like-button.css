@@ -7,16 +7,10 @@
 	background-position: center;
 	background-size: auto;
 	border: none;
+	transition: opacity 0.1s linear 0.05s;
 }
 
 .elements__like-button:hover {
 	cursor: pointer;
-	background-image: url(../../../images/icon_heart_hover.svg);
-}
-
-.elements__like-button_active {
-	background-image: url(../../../images/icon_heart_active.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: auto;
+	opacity: .6;
 }

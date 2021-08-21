@@ -11,17 +11,17 @@
 	background-position: center;
 	background-size: cover;
 	transform: rotate(45deg);
+	transition: opacity 0.1s linear 0.05s;
 }
 
 .popup__close-button:hover {
 	cursor: pointer;
-	background-image: url(../../../images/edit_plus_hover.svg);
+	opacity: .6;
 }
 
 @media all and (max-width: 768px) {
 
 	.popup__close-button {
-		top: -40px;
 		right: 0;
 		width: 26px;
 		height: 26px;

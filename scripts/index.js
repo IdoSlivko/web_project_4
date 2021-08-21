@@ -3,42 +3,42 @@
 let editBtn = document.querySelector('.profile__edit-profile');
 let closePopBtn = document.querySelector('.popup__close-button');
 
-let popDisplay = document.querySelector('.popup_opened');
+let popDisplay = document.querySelector('.popup');
 
-let nameInput = document.querySelector('.popup__input_full-name');
-let aboutInput = document.querySelector('.popup__input_about');
+let nameInput = document.querySelector('.popup__input_content_full-name');
+let aboutInput = document.querySelector('.popup__input_content_about');
 
 let name = document.querySelector('.profile__name');
 let about = document.querySelector('.profile__occupation');
 
-let popContain = document.querySelector('.popup__container');
+let formElement = document.querySelector('.form');
+
 
 function openEditProfile()
 {
-	popDisplay.style.display = 'flex';
-
+	popDisplay.classList.add('popup_opened');
+	
 	nameInput.focus();
 	nameInput.value = name.textContent;
 	aboutInput.value = about.textContent;
 }
 
-function closeEditProfile(evt)
+function closeEditProfile()
 {
-	evt.preventDefault();
-
-	popDisplay.style.display = 'none';
+	popDisplay.classList.remove('popup_opened');
 }
 
 function handleSubmit(evt)
 {
 	evt.preventDefault();
-
+	
 	name.textContent = nameInput.value;
 	about.textContent = aboutInput.value;
-
-	popDisplay.style.display = 'none';
+	
+	popDisplay.classList.remove('popup_opened');
 }
+
 
 editBtn.addEventListener('click', openEditProfile);
 closePopBtn.addEventListener('click', closeEditProfile);
-popContain.addEventListener('submit', handleSubmit);
+formElement.addEventListener('submit', handleSubmit);

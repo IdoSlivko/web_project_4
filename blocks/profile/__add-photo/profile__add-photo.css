@@ -11,12 +11,12 @@
 	background-size: auto;
 	border: 2px solid rgba(255, 255, 255, 1);
 	border-radius: 2px;
+	transition: opacity 0.1s linear 0.05s;
 }
 
 .profile__add-photo:hover {
 	cursor: pointer;
-	background-image: url(../../../images/edit_plus_hover.svg);
-	border: 2px solid rgba(255, 255, 255, .6);
+	opacity: .6;
 }
 
 @media all and (max-width: 320px) {
