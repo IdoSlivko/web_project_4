@@ -11,7 +11,7 @@ let aboutInput = document.querySelector('.popup__input_content_about');
 let name = document.querySelector('.profile__name');
 let about = document.querySelector('.profile__occupation');
 
-let formElement = document.querySelector('.form');
+let formElement = document.querySelector('.popup__form');
 
 
 function openEditProfile()
