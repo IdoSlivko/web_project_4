@@ -15,17 +15,23 @@
 		<section class="popup">
 			<div class="popup__container">
 				<form class="popup__form" name="user profile">
-					<h3 class="popup__title">Edit profile</h3>
-					<input class="popup__input popup__input_content_full-name" type="text" name="fullName" maxlength="30"
-						placeholder="Full Name" aria-label="Enter full name" required>
-					<input class="popup__input popup__input_content_about" type="text" name="about" maxlength="30" placeholder="About Me"
-						aria-label="Enter about" required>
-					<button class="popup__submit" type="submit">Save</button>
-					<button class="popup__close-button" type="button" aria-label="close popup"></button>
+					<button class="popup__close-button" type="button" aria-label="close modal"></button>
+					<h3 class="popup__title"></h3>
+					<input class="popup__input popup__input_content_full-name" type="text" maxlength="50" required>
+					<input class="popup__input popup__input_content_about" type="text" required>
+					<button class="popup__submit" type="submit"></button>
 				</form>
 			</div>
 		</section>
 
+		<section class="pic-popup">
+			<figure class="pic-popup__container">
+				<button class="pic-popup__close-button" aria-label="close image"></button>
+				<img class="pic-popup__image">
+				<figcaption class="pic-popup__caption"></figcaption>
+			</figure>
+		</section>
+		
 		<header class="header">
 			<div class="logo"></div>
 		</header>
@@ -37,68 +43,26 @@
 					<img class="profile__image" src="./images/jacques_cousteau.jpg" alt="A portrait of Jacques Cousteau">
 					<div class="profile__main-text">
 						<div class="profile__text">
-							<h1 class="profile__name">Jacques Cousteau</h1>
-							<button class="profile__edit-profile" aria-label="edit profile"></button>
+							<h1 class="profile__name"></h1>
+							<button class="profile__edit-profile" title="Edit profile" aria-label="edit profile"></button>
 						</div>
-						<p class="profile__occupation">Explorer</p>
+						<p class="profile__occupation"></p>
 					</div>
 				</div>
-				<button class="profile__add-photo" aria-label="add photo"></button>
+				<button class="profile__add-photo" title="Add photo" aria-label="add photo"></button>
 			</section>
-
+		
 			<section class="elements">
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/yosemite_valley.jpg"
-						alt="A picture of Yosemite Valley's Merced River">
-					<div class="elements__description">
-						<h3 class="elements__title">Yosemite Valley</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/lake_louise.jpg" alt="A picture of Lake Louise">
-					<div class="elements__description">
-						<h3 class="elements__title">Lake Louise</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/bald_mountains.jpg" alt="A picture of sunset at Bald Mountains">
-					<div class="elements__description">
-						<h3 class="elements__title">Bald Mountains</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/latemar.jpg" alt="A picture of mount Latemar">
-					<div class="elements__description">
-						<h3 class="elements__title">Latemar</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/vanoise_nationa.jpg"
-						alt="A picture of a part of the Vanoise Massif mountain range of the Graian Alps">
-					<div class="elements__description">
-						<h3 class="elements__title">Vanoise National Park</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
-				<article class="elements__item">
-					<img class="elements__image" src="./images/lago_di_braies.jpg"
-						alt="A picture of Lake Braies (Lago di Braies) in the Prags Dolomites">
-					<div class="elements__description">
-						<h3 class="elements__title">Lago di Braies</h3>
-						<button class="elements__like-button" aria-label="like button"></button>
-					</div>
-				</article>
-
+				<template id="image-template">
+					<article class="elements__item">
+						<button class="elements__delete-button" type="button" title="Delete image" aria-label="delete image"></button>
+						<img class="elements__image">
+						<div class="elements__description">
+							<h3 class="elements__title"></h3>
+							<button class="elements__like-button" type="button" aria-label="like button"></button>
+						</div>
+					</article>
+				</template>
 			</section>
 
 		</main>

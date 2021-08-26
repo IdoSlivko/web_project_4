@@ -1,7 +1,7 @@
 .elements {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(auto, 361px);
 	grid-gap: 20px 17px;
 }
 

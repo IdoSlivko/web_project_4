@@ -1,0 +1,30 @@
+.pic-popup__close-button {
+	position: absolute;
+	top: -40px;
+	right: -40px;
+	width: 40px;
+	height: 40px;
+	border: none;
+	background-color: initial;
+	background-image: url(../../../images/edit_plus.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	transform: rotate(45deg);
+	transition: opacity 0.1s linear 0.05s;
+}
+
+.pic-popup__close-button:hover {
+	cursor: pointer;
+	opacity: .6;
+}
+
+@media all and (max-width: 768px) {
+
+	.pic-popup__close-button {
+		right: 0;
+		width: 26px;
+		height: 26px;
+	}
+
+}
