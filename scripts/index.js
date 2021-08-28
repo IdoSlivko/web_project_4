@@ -1,22 +1,36 @@
 
 
+
 const editBtn = document.querySelector('.profile__edit-profile');
 const addImgBtn = document.querySelector('.profile__add-photo');
-const closePopBtn = document.querySelector('.popup__close-button');
 
-const popDisplay = document.querySelector('.popup');
+const closeProfileBtn = document.querySelector('.popup__close-profile');
+const closeImageBtn = document.querySelector('.popup__close-add-image');
+const closeLargeImageBtn = document.querySelector('.popup__close-large-image');
 
-const formElement = document.querySelector('.popup__form');
+const popProfileDisplay = document.querySelector('.popup_profile');
+const popImageDisplay = document.querySelector('.popup_add-image');
+const popLargeImageDisplay = document.querySelector('.popup_large-image');
 
-const popTitle = document.querySelector('.popup__title');
-const firstInput = document.querySelector('.popup__input_content_full-name');
-const secondInput = document.querySelector('.popup__input_content_about');
-const popSubmit = document.querySelector('.popup__submit');
+const formProfile = document.querySelector('.popup__profile-form');
+const formImage = document.querySelector('.popup__add-image-form');
 
-let name = document.querySelector('.profile__name');
+const popProfileTitle = document.querySelector('.popup__profile-title');
+const popImageTitle = document.querySelector('.popup__add-image-title');
+
+const userNameInput = document.querySelector('.popup__input_content_full-name');
+const userAboutInput = document.querySelector('.popup__input_content_about');
+
+const imageTitleInput = document.querySelector('.popup__input_content_add-image-title');
+const imageLinkInput = document.querySelector('.popup__input_content_add-image-link');
+
+const popProfileSubmit = document.querySelector('.popup__profile-submit');
+const popImageSubmit = document.querySelector('.popup__add-image-submit');
+
+const name = document.querySelector('.profile__name');
 name.textContent = 'Jacques Cousteau';
 
-let about = document.querySelector('.profile__occupation');
+const about = document.querySelector('.profile__occupation');
 about.textContent = 'Explorer';
 
 const initialCards = [
@@ -51,54 +65,49 @@ const imageTemplate = document.querySelector('#image-template').content;
 
 
 
-function openPopup(identifier, title, firstHolder, secondHolder, submitText)
-{
-	popDisplay.classList.add('popup_opened');
+function openPopup(popup) { popup.classList.add('popup_opened'); }
+function closePopup(popup) { popup.classList.remove('popup_opened'); }
 
-	popTitle.textContent = title;
-	firstInput.focus();
-	firstInput.placeholder = firstHolder;
-	secondInput.placeholder= secondHolder;
-	popSubmit.textContent = submitText;
-	
-	if (identifier == 1)
-	{
-		firstInput.value = name.textContent;
-		secondInput.value = about.textContent;
-	}
-	else
-	{
-		firstInput.value = '';
-		secondInput.value = '';
-	}
+function editProfile(title, submit)
+{
+	openPopup(popProfileDisplay);
+
+	popProfileTitle.textContent = title;
+	userNameInput.focus();
+	userNameInput.value = name.textContent;
+	userAboutInput.value = about.textContent;
+	popProfileSubmit.textContent = submit;
 }
 
-
-function closePopup()
-{
-	popDisplay.classList.remove('popup_opened');
-}
-
-
-function handleSubmit(evt)
+function handleProfileSubmit(evt)
 {
 	evt.preventDefault();
 
-	if (popSubmit.textContent === 'Save')
-	{
-		name.textContent = firstInput.value;
-		about.textContent = secondInput.value;
-		firstInput.name = 'fullName';
-		secondInput.name = 'about';
-	}
-	else
-	{
-		elementsContainer.prepend(renderImg(firstInput.value, secondInput.value));
-	}
+	name.textContent = userNameInput.value;
+	about.textContent = userAboutInput.value;
 
-	popDisplay.classList.remove('popup_opened');
+	closePopup(popProfileDisplay);
 }
 
+function editImage(title, submit)
+{
+	openPopup(popImageDisplay);
+
+	popImageTitle.textContent = title;
+	imageTitleInput.focus();
+	imageTitleInput.value = '';
+	imageLinkInput.value = '';
+	popImageSubmit.textContent = submit;
+}
+
+function handleImageSubmit(evt)
+{
+	evt.preventDefault();
+
+	elementsContainer.prepend(renderImg(imageTitleInput.value, imageLinkInput.value));
+	
+	closePopup(popImageDisplay);
+}
 
 function renderImg(imgTitle, link)
 {
@@ -106,6 +115,7 @@ function renderImg(imgTitle, link)
 
 	imageItem.querySelector('.elements__title').textContent = imgTitle;
 	imageItem.querySelector('.elements__image').src = link;
+	imageItem.querySelector('.elements__image').alt = imgTitle;
 
 	imageItem.querySelector('.elements__delete-button').addEventListener('click', () => {
 			imageItem.remove();
@@ -116,9 +126,9 @@ function renderImg(imgTitle, link)
 	});
 
 	imageItem.querySelector('.elements__image').addEventListener('click', () => {
-		document.querySelector('.pic-popup').classList.add('pic-popup_opened');
-		document.querySelector('.pic-popup__image').src = link;
-		document.querySelector('.pic-popup__caption').textContent = imgTitle;
+		openPopup(popLargeImageDisplay);
+		document.querySelector('.popup__image').src = link;
+		document.querySelector('.popup__caption').textContent = imgTitle;
 	});
 
 	return imageItem;
@@ -126,22 +136,14 @@ function renderImg(imgTitle, link)
 
 
 
-initialCards.forEach(item => {
-	elementsContainer.prepend(renderImg(item.name, item.link));
-});
+initialCards.forEach(item => { elementsContainer.prepend(renderImg(item.name, item.link)); });
 
-editBtn.addEventListener('click', () => {
-	openPopup(1, 'Edit profile', 'Full name', 'About me', 'Save');
-});
+editBtn.addEventListener('click', () => {	editProfile('Edit profile', 'Save'); });
+closeProfileBtn.addEventListener('click', () => {	closePopup(popProfileDisplay); });
+formProfile.addEventListener('submit', handleProfileSubmit);
 
-addImgBtn.addEventListener('click', () => {
-	openPopup(0, 'New place', 'Title', 'Image link', 'Create');
-});
+addImgBtn.addEventListener('click', () => {	editImage('New place', 'Create'); });
+closeImageBtn.addEventListener('click', () => {	closePopup(popImageDisplay); });
+formImage.addEventListener('submit', handleImageSubmit);
 
-formElement.addEventListener('submit', handleSubmit);
-
-closePopBtn.addEventListener('click', closePopup);
-
-document.querySelector('.pic-popup__close-button').addEventListener('click', ()=> {
-	document.querySelector('.pic-popup').classList.remove('pic-popup_opened');
-});
+closeLargeImageBtn.addEventListener('click', () => {	closePopup(popLargeImageDisplay); });

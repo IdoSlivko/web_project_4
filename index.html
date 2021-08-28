@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +11,35 @@
 
 	<div class="page">
 
-		<section class="popup">
+		<section class="popup popup_profile">
 			<div class="popup__container">
-				<form class="popup__form" name="user profile">
-					<button class="popup__close-button" type="button" aria-label="close modal"></button>
-					<h3 class="popup__title"></h3>
-					<input class="popup__input popup__input_content_full-name" type="text" maxlength="50" required>
-					<input class="popup__input popup__input_content_about" type="text" required>
-					<button class="popup__submit" type="submit"></button>
+				<form class="popup__profile-form" name="user profile">
+					<button class="popup__close-button popup__close-profile" type="button" aria-label="close modal"></button>
+					<h3 class="popup__title popup__profile-title"></h3>
+					<input class="popup__input popup__input_content_full-name" type="text" name="fullName" placeholder="Full name" maxlength="35" required>
+					<input class="popup__input popup__input_content_about" type="text" name="about" placeholder="About me" maxlength="35" required>
+					<button class="popup__submit popup__profile-submit" type="submit"></button>
 				</form>
 			</div>
 		</section>
 
-		<section class="pic-popup">
-			<figure class="pic-popup__container">
-				<button class="pic-popup__close-button" aria-label="close image"></button>
-				<img class="pic-popup__image">
-				<figcaption class="pic-popup__caption"></figcaption>
+		<section class="popup popup_add-image">
+			<div class="popup__container">
+				<form class="popup__add-image-form" name="add image">
+					<button class="popup__close-button popup__close-add-image" type="button" aria-label="close modal"></button>
+					<h3 class="popup__title popup__add-image-title"></h3>
+					<input class="popup__input popup__input_content_add-image-title" type="text" name="imageTitle" placeholder="Title" maxlength="50" required>
+					<input class="popup__input popup__input_content_add-image-link" type="text" name="imageLink" placeholder="Image link" required>
+					<button class="popup__submit popup__add-image-submit" type="submit"></button>
+				</form>
+			</div>
+		</section>
+
+		<section class="popup popup_large-image">
+			<figure class="popup__container-large-image">
+				<button class="popup__close-button popup__close-large-image" aria-label="close image"></button>
+				<img class="popup__image">
+				<figcaption class="popup__caption"></figcaption>
 			</figure>
 		</section>
 		

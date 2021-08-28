@@ -8,17 +8,13 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__container-large-image/popup__container-large-image.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
-
-@import url(../blocks/pic-popup/pic-popup.css);
-@import url(../blocks/pic-popup/_opened/pic-popup_opened.css);
-@import url(../blocks/pic-popup/__container/pic-popup__container.css);
-@import url(../blocks/pic-popup/__close-button/pic-popup__close-button.css);
-@import url(../blocks/pic-popup/__image/pic-popup__image.css);
-@import url(../blocks/pic-popup/__caption/pic-popup__caption.css);
 
 @import url(../blocks/header/header.css);
 
