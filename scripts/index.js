@@ -68,15 +68,13 @@ const imageTemplate = document.querySelector('#image-template').content;
 function openPopup(popup) { popup.classList.add('popup_opened'); }
 function closePopup(popup) { popup.classList.remove('popup_opened'); }
 
-function editProfile(title, submit)
+function editProfile()
 {
 	openPopup(popProfileDisplay);
 
-	popProfileTitle.textContent = title;
 	userNameInput.focus();
 	userNameInput.value = name.textContent;
 	userAboutInput.value = about.textContent;
-	popProfileSubmit.textContent = submit;
 }
 
 function handleProfileSubmit(evt)
@@ -89,15 +87,13 @@ function handleProfileSubmit(evt)
 	closePopup(popProfileDisplay);
 }
 
-function editImage(title, submit)
+function editImage()
 {
 	openPopup(popImageDisplay);
 
-	popImageTitle.textContent = title;
 	imageTitleInput.focus();
 	imageTitleInput.value = '';
 	imageLinkInput.value = '';
-	popImageSubmit.textContent = submit;
 }
 
 function handleImageSubmit(evt)
@@ -112,10 +108,11 @@ function handleImageSubmit(evt)
 function renderImg(imgTitle, link)
 {
 	const imageItem = imageTemplate.querySelector('.elements__item').cloneNode(true);
+	const imageItemImg = imageItem.querySelector('.elements__image');
 
 	imageItem.querySelector('.elements__title').textContent = imgTitle;
-	imageItem.querySelector('.elements__image').src = link;
-	imageItem.querySelector('.elements__image').alt = imgTitle;
+	imageItemImg.src = link;
+	imageItemImg.alt = imgTitle;
 
 	imageItem.querySelector('.elements__delete-button').addEventListener('click', () => {
 			imageItem.remove();
@@ -125,7 +122,7 @@ function renderImg(imgTitle, link)
 		imageItem.querySelector('.elements__like-button').classList.toggle('elements__like-button_active');
 	});
 
-	imageItem.querySelector('.elements__image').addEventListener('click', () => {
+	imageItemImg.addEventListener('click', () => {
 		openPopup(popLargeImageDisplay);
 		document.querySelector('.popup__image').src = link;
 		document.querySelector('.popup__caption').textContent = imgTitle;
@@ -138,11 +135,11 @@ function renderImg(imgTitle, link)
 
 initialCards.forEach(item => { elementsContainer.prepend(renderImg(item.name, item.link)); });
 
-editBtn.addEventListener('click', () => {	editProfile('Edit profile', 'Save'); });
+editBtn.addEventListener('click', editProfile);
 closeProfileBtn.addEventListener('click', () => {	closePopup(popProfileDisplay); });
 formProfile.addEventListener('submit', handleProfileSubmit);
 
-addImgBtn.addEventListener('click', () => {	editImage('New place', 'Create'); });
+addImgBtn.addEventListener('click', editImage);
 closeImageBtn.addEventListener('click', () => {	closePopup(popImageDisplay); });
 formImage.addEventListener('submit', handleImageSubmit);
 
