@@ -4,9 +4,7 @@
 const editBtn = document.querySelector('.profile__edit-profile');
 const addImgBtn = document.querySelector('.profile__add-photo');
 
-const closeProfileBtn = document.querySelector('.popup__close-profile');
-const closeImageBtn = document.querySelector('.popup__close-add-image');
-const closeLargeImageBtn = document.querySelector('.popup__close-large-image');
+const popup = document.querySelectorAll('.popup');
 
 const popProfileDisplay = document.querySelector('.popup_profile');
 const popImageDisplay = document.querySelector('.popup_add-image');
@@ -15,17 +13,21 @@ const popLargeImageDisplay = document.querySelector('.popup_large-image');
 const formProfile = document.querySelector('.popup__profile-form');
 const formImage = document.querySelector('.popup__add-image-form');
 
-const popProfileTitle = document.querySelector('.popup__profile-title');
-const popImageTitle = document.querySelector('.popup__add-image-title');
+const closeProfileBtn = formProfile.querySelector('.popup__close-profile');
+const closeImageBtn = formImage.querySelector('.popup__close-add-image');
+const closeLargeImageBtn = document.querySelector('.popup__close-large-image');
 
-const userNameInput = document.querySelector('.popup__input_content_full-name');
-const userAboutInput = document.querySelector('.popup__input_content_about');
+const popProfileTitle = formProfile.querySelector('.popup__profile-title');
+const popImageTitle = formImage.querySelector('.popup__add-image-title');
 
-const imageTitleInput = document.querySelector('.popup__input_content_add-image-title');
-const imageLinkInput = document.querySelector('.popup__input_content_add-image-link');
+const userNameInput = formProfile.querySelector('.popup__input_content_full-name');
+const userAboutInput = formProfile.querySelector('.popup__input_content_about');
 
-const popProfileSubmit = document.querySelector('.popup__profile-submit');
-const popImageSubmit = document.querySelector('.popup__add-image-submit');
+const imageTitleInput = formImage.querySelector('.popup__input_content_add-image-title');
+const imageLinkInput = formImage.querySelector('.popup__input_content_add-image-link');
+
+const popProfileSubmit = formProfile.querySelector('.popup__profile-submit');
+const popImageSubmit = formImage.querySelector('.popup__add-image-submit');
 
 const name = document.querySelector('.profile__name');
 name.textContent = 'Jacques Cousteau';
@@ -75,12 +77,12 @@ function editProfile()
 	userNameInput.focus();
 	userNameInput.value = name.textContent;
 	userAboutInput.value = about.textContent;
+
+	enableValidation();
 }
 
-function handleProfileSubmit(evt)
+function handleProfileSubmit()
 {
-	evt.preventDefault();
-
 	name.textContent = userNameInput.value;
 	about.textContent = userAboutInput.value;
 
@@ -91,15 +93,14 @@ function editImage()
 {
 	openPopup(popImageDisplay);
 
+	formImage.reset();
 	imageTitleInput.focus();
-	imageTitleInput.value = '';
-	imageLinkInput.value = '';
+
+	enableValidation();
 }
 
-function handleImageSubmit(evt)
+function handleImageSubmit()
 {
-	evt.preventDefault();
-
 	elementsContainer.prepend(renderImg(imageTitleInput.value, imageLinkInput.value));
 	
 	closePopup(popImageDisplay);
@@ -133,7 +134,7 @@ function renderImg(imgTitle, link)
 
 
 
-initialCards.forEach(item => { elementsContainer.prepend(renderImg(item.name, item.link)); });
+initialCards.forEach( (item) => { elementsContainer.prepend(renderImg(item.name, item.link)); });
 
 editBtn.addEventListener('click', editProfile);
 closeProfileBtn.addEventListener('click', () => {	closePopup(popProfileDisplay); });
@@ -143,4 +144,22 @@ addImgBtn.addEventListener('click', editImage);
 closeImageBtn.addEventListener('click', () => {	closePopup(popImageDisplay); });
 formImage.addEventListener('submit', handleImageSubmit);
 
-closeLargeImageBtn.addEventListener('click', () => {	closePopup(popLargeImageDisplay); });
+closeLargeImageBtn.addEventListener('click', () => { closePopup(popLargeImageDisplay); });
+
+popup.forEach( (popupElement) => { popupElement.addEventListener('click', (evt) =>
+	{
+		if (evt.target === popupElement)
+		{
+			closePopup(popupElement);
+		}
+	});
+});
+
+popup.forEach( (popupElement) => { document.addEventListener('keydown', (evt) =>
+	{
+		if (evt.keyCode === 27 && popupElement.classList.contains('popup_opened'))
+		{
+			closePopup(popupElement);
+		}
+	});
+});

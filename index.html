@@ -13,23 +13,27 @@
 
 		<section class="popup popup_profile">
 			<div class="popup__container">
-				<form class="popup__profile-form" name="user profile">
+				<form class="popup__form popup__profile-form" name="user profile" novalidate>
 					<button class="popup__close-button popup__close-profile" type="button" aria-label="close modal"></button>
 					<h3 class="popup__title popup__profile-title">Edit profile</h3>
-					<input class="popup__input popup__input_content_full-name" type="text" name="fullName" placeholder="Full name" maxlength="35" required>
-					<input class="popup__input popup__input_content_about" type="text" name="about" placeholder="About me" maxlength="35" required>
+					<input id="fullName-input" class="popup__input popup__input_content_full-name" type="text" name="fullName" placeholder="Full name" minlength="2" maxlength="40" required>
+					<span id="fullName-input-error" class="popup__input-error-msg"></span>
+					<input id="about-input" class="popup__input popup__input_content_about" type="text" name="about" placeholder="About me" minlength="2" maxlength="200" required>
+					<span id="about-input-error" class="popup__input-error-msg"></span>
 					<button class="popup__submit popup__profile-submit" type="submit">Save</button>
 				</form>
 			</div>
 		</section>
-
+		
 		<section class="popup popup_add-image">
 			<div class="popup__container">
-				<form class="popup__add-image-form" name="add image">
+				<form class="popup__form popup__add-image-form" name="add image" novalidate>
 					<button class="popup__close-button popup__close-add-image" type="button" aria-label="close modal"></button>
 					<h3 class="popup__title popup__add-image-title">New place</h3>
-					<input class="popup__input popup__input_content_add-image-title" type="text" name="imageTitle" placeholder="Title" maxlength="50" required>
-					<input class="popup__input popup__input_content_add-image-link" type="text" name="imageLink" placeholder="Image link" required>
+					<input id="imgTitle-input" class="popup__input popup__input_content_add-image-title" type="text" name="imageTitle" placeholder="Title" minlength="1" maxlength="30" required>
+					<span id="imgTitle-input-error" class="popup__input-error-msg"></span>
+					<input id="imgLink-input" class="popup__input popup__input_content_add-image-link" type="url" name="imageLink" placeholder="Image link" required>
+					<span id="imgLink-input-error" class="popup__input-error-msg"></span>
 					<button class="popup__submit popup__add-image-submit" type="submit">Create</button>
 				</form>
 			</div>
@@ -85,6 +89,7 @@
 	</div>
 
 	<script src="./scripts/index.js"></script>
+	<script src="./scripts/validate.js"></script>
 
 </body>
 
