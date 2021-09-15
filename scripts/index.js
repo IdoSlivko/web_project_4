@@ -23,6 +23,7 @@ const userAboutInput = formProfile.querySelector(".popup__input_content_about");
 const newImage = {};
 const imageTitleInput = formImage.querySelector( ".popup__input_content_add-image-title");
 const imageLinkInput = formImage.querySelector(".popup__input_content_add-image-link");
+const image = document.querySelector('.popup__image');
 
 const popProfileSubmit = formProfile.querySelector(".popup__profile-submit");
 const popImageSubmit = formImage.querySelector(".popup__add-image-submit");
@@ -63,25 +64,33 @@ const initialCards = [
 const elementsContainer = document.querySelector(".elements");
 const imageTemplate = document.querySelector("#image-template").content;
 
+
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  popup.addEventListener("click", (evt) => {
-    if (evt.target === popup) {
-      closePopup(popup);
-    }
-  });
+  popup.addEventListener("click", closeByOverlay);
   document.addEventListener("keydown", closeByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  popup.removeEventListener("click", closeByOverlay);
   document.removeEventListener("keydown", closeByEsc);
   clearValidationErrors(popup);
 }
 
 function closeByEsc(evt) {
   const openedPopup = document.querySelector(".popup_opened");
-  if (evt.keyCode === 27) {
+  
+  if (evt.key === "Escape") {
+    closePopup(openedPopup);
+  }
+}
+
+function closeByOverlay(evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+
+  if (evt.target === openedPopup) {
     closePopup(openedPopup);
   }
 }
@@ -139,9 +148,9 @@ function renderImg(item) {
 
   imageItemImg.addEventListener("click", () => {
     openPopup(popupLargeImageDisplay);
-    document.querySelector(".popup__image").src = item.link;
+    image.src = item.link;
     document.querySelector(".popup__caption").textContent = item.name;
-    document.querySelector(".popup__image").alt = item.name;
+    image.alt = item.name;
   });
 
   return imageItem;
@@ -173,5 +182,4 @@ formImage.addEventListener("submit", handleImageSubmit);
 
 closeLargeImageBtn.addEventListener("click", () => {
   closePopup(popupLargeImageDisplay);
-  document.removeEventListener("keydown", closeByEsc);
 });
