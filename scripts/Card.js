@@ -1,14 +1,10 @@
-import { openPopup, popupLargeImageDisplay } from "./utilities.js";
-
-const image = document.querySelector(".popup__image");
-const imageCaption = document.querySelector(".popup__caption");
-
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, { handleCardClick }) {
     this._name = data.name;
     this._link = data.link;
-
     this._cardSelector = cardSelector;
+
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardTemplate() {
@@ -18,13 +14,6 @@ export default class Card {
       .cloneNode(true);
 
     return cardTemplate;
-  }
-
-  _enlargeCard() {
-    openPopup(popupLargeImageDisplay);
-    image.src = this._link;
-    imageCaption.textContent = this._name;
-    image.alt = this._name;
   }
 
   _toggleLikeCard() {
@@ -37,7 +26,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._item.querySelector(".elements__image").addEventListener("click", () => this._enlargeCard());
+    this._item.querySelector(".elements__image").addEventListener("click", () => this._handleCardClick(this._name, this._link));
     this._item.querySelector(".elements__like-button").addEventListener("click", () => this._toggleLikeCard());
     this._item.querySelector(".elements__delete-button").addEventListener("click", () => this._deleteCard());
   }

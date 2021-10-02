@@ -1,5 +1,3 @@
-export const popupLargeImageDisplay = document.querySelector(".popup_large-image");
-
 export const formsSettings = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit",
