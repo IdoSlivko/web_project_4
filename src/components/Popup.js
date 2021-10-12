@@ -1,5 +1,3 @@
-import { clearValidationErrors, formsSettings } from "./utilities.js";
-
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
@@ -17,7 +15,6 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
     this._popupElement.removeEventListener("click", this._handleOverlayClose);
     this._popupElement.querySelector(".popup__close-button").removeEventListener("click", this._handleButtonClose);
-    clearValidationErrors(this._popupElement, formsSettings);
   }
 
   _handleEscClose = (evt) => {
@@ -35,8 +32,4 @@ export default class Popup {
   _handleButtonClose = () => {
     this.close();
   };
-
-  setEventListeners() {
-    this._popupElement.querySelector(".popup__close-button").addEventListener("click", this._handleButtonClose);
-  }
 }
