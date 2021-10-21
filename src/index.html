@@ -24,6 +24,18 @@
 			</div>
 		</section>
 		
+		<section class="popup popup__edit-profile-image">
+			<div class="popup__container">
+				<form class="popup__form popup__edit-profile-image-form" name="editProfileImage" novalidate>
+					<button class="popup__close-button popup__close-edit-profile-image" type="button" aria-label="close modal"></button>
+					<h3 class="popup__title popup__edit-profile-image-title">Change profile picture</h3>
+					<input id="imgLink-input" class="popup__input popup__input_content_edit-profile-image-link" type="url" name="avatarLink" placeholder="Image link" required>
+					<span id="imgLink-input-error" class="popup__input-error-msg"></span>
+					<button class="popup__submit popup__edit-profile-image-submit" type="submit">Save</button>
+				</form>
+			</div>
+		</section>
+
 		<section class="popup popup_add-image">
 			<div class="popup__container">
 				<form class="popup__form popup__add-image-form" name="addImage" novalidate>
@@ -34,6 +46,16 @@
 					<input id="imgLink-input" class="popup__input popup__input_content_add-image-link" type="url" name="imageLink" placeholder="Image link" required>
 					<span id="imgLink-input-error" class="popup__input-error-msg"></span>
 					<button class="popup__submit popup__add-image-submit" type="submit">Create</button>
+				</form>
+			</div>
+		</section>
+
+		<section class="popup popup_alert-delete">
+			<div class="popup__container">
+				<form class="popup__form popup__alert-delete-form" name="deleteImage" novalidate>
+					<button class="popup__close-button popup__close-alert-delete" type="button" aria-label="close modal"></button>
+					<h3 class="popup__title popup__alert-delete-title">Are you sure?</h3>
+					<button class="popup__submit popup__submit_alert-delete popup__alert-delete-submit" type="submit">Yes</button>
 				</form>
 			</div>
 		</section>
@@ -54,7 +76,10 @@
 
 			<section class="profile">
 				<div class="profile__info">
-					<img class="profile__image" src="<%=require('./images/jacques_cousteau.jpg')%>" alt="A portrait of Jacques Cousteau">
+					<button class="profile__edit-image" title="Edit profile image"></button>
+					<div class="profile__image-container">
+						<img class="profile__image" alt="User Profile Image">
+					</div>
 					<div class="profile__main-text">
 						<div class="profile__text">
 							<h1 class="profile__name"></h1>
@@ -73,7 +98,10 @@
 						<img class="elements__image">
 						<div class="elements__description">
 							<h3 class="elements__title"></h3>
-							<button class="elements__like-button" type="button" aria-label="like button"></button>
+							<div class="elements__like-section">
+								<button class="elements__like-button" type="button" aria-label="like button"></button>
+								<div class="elements__like-counter"></div>
+							</div>
 						</div>
 					</article>
 				</template>

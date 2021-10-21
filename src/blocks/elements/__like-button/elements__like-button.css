@@ -2,6 +2,7 @@
 	width: 21px;
 	height: 19px;
 	background-color: initial;
+	/* background-color: #f00; */
 	background-image: url(../../../images/icon_heart_disable.svg);
 	background-repeat: no-repeat;
 	background-position: center;

@@ -1,5 +1,6 @@
 .profile__image {
 	width: 120px;
-	display: block;
+	height: 120px;
+	object-fit: cover;
 	border-radius: 50%;
 }
