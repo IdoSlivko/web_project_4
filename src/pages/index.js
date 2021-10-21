@@ -109,7 +109,7 @@ const initiateImagePopup = new PopupWithForm(".popup_add-image",
   }
 });
 
-const initiateProfileImagePopup = new PopupWithForm(".popup__edit-profile-image",
+const initiateProfileImagePopup = new PopupWithForm(".popup_edit-profile-image",
 {
   submitHandler: (link) => {
     api.editProfileImage(link)

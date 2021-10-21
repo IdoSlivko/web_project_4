@@ -20,5 +20,5 @@ export const formsSettings = {
 };
 
 export const profileFormElement = document.querySelector(".popup__profile-form");
-export const profileImageFormElement = document.querySelector(".popup__edit-profile-image");
+export const profileImageFormElement = document.querySelector(".popup__edit-profile-image-form");
 export const imageFormElement = document.querySelector(".popup__add-image-form");
