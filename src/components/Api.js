@@ -4,32 +4,26 @@ export default class Api {
     this._headers = headers;
   }
 
-  getServerImages() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from getServerImages:", error));
+  _checkResponse(res) {
+    if (res.ok) {
+    return res.json();
+    } else {
+    return Promise.reject(res.statusText);
+    }
   }
 
   getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from getProfileInfo:", error));
+    .then((res) => this._checkResponse(res))
+  }
+
+  getServerImages() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    })
+    .then((res) => this._checkResponse(res))
   }
 
   setProfileInfo(data) {
@@ -41,14 +35,7 @@ export default class Api {
         about: data.about,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from setProfileInfo:", error));
+    .then((res) => this._checkResponse(res))
   }
 
   addNewImage(data) {
@@ -60,14 +47,7 @@ export default class Api {
         link: data.imageLink,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from addNewImage:", error));
+    .then((res) => this._checkResponse(res))
   }
 
   deleteImage(cardId) {
@@ -75,14 +55,7 @@ export default class Api {
       headers: this._headers,
       method: "DELETE",
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from deleteImage:", error));
+    .then((res) => this._checkResponse(res))
   }
 
   likeCard(cardId) {
@@ -90,14 +63,7 @@ export default class Api {
       headers: this._headers,
       method: "PUT",
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from likeCard:", error));
+    .then((res) => this._checkResponse(res))
   }
 
   unLikeCard(cardId) {
@@ -105,14 +71,7 @@ export default class Api {
       headers: this._headers,
       method: "DELETE",
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from unLikeCard:", error));
+    .then((res) => this._checkResponse(res))
   }
 
   editProfileImage(link) {
@@ -123,13 +82,6 @@ export default class Api {
         avatar: link.avatarLink,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.statusText);
-        }
-      })
-      .catch((error) => console.log("Error from editProfileImage:", error));
+    .then((res) => this._checkResponse(res))
   }
 }

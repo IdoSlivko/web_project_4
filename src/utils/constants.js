@@ -3,11 +3,9 @@ export const editProfileImageBtn = document.querySelector(".profile__edit-image"
 export const addImageBtn = document.querySelector(".profile__add-photo");
 
 const form = document.querySelector(".popup__form");
-const formImageProfile = document.querySelector(".popup__edit-profile-image-form");
 
 export const userNameInput = form.querySelector(".popup__input_content_full-name");
 export const userAboutInput = form.querySelector(".popup__input_content_about");
-export const userProfileImageInput = formImageProfile.querySelector(".popup__input_content_edit-profile-image-link");
 
 export const formsSettings = {
   inputSelector: ".popup__input",

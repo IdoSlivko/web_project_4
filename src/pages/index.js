@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupAlertDelete from "../components/PopupAlertDelete.js";
 import Api from "../components/Api.js"
 
 import {
@@ -15,12 +16,10 @@ import {
   addImageBtn,
   userNameInput,
   userAboutInput,
-  userProfileImageInput,
   profileFormElement,
   profileImageFormElement,
   imageFormElement,
-} from "../components/utils/constants.js";
-import PopupAlertDelete from "../components/PopupAlertDelete";
+} from "../utils/constants.js";
 
 const edidProfileformValidator = new FormValidator(formsSettings, profileFormElement);
 const edidProfileImageformValidator = new FormValidator(formsSettings, profileImageFormElement);
@@ -54,11 +53,13 @@ api.getProfileInfo()
         items: res,
         renderer: (imageItem) => {
           server.addItem(generateCardWithImage(imageItem));
-      } 
+        } 
     });
     server.constructItems();
-  });
-});
+  })
+  .catch((error) => console.log("Error from getServerImages:", error));
+})
+.catch((error) => console.log("Error from getProfileInfo:", error));
 
 const deleteCardAlert = new PopupAlertDelete(".popup_alert-delete");
 deleteCardAlert.setEventListeners();
@@ -72,26 +73,29 @@ function openLargeImagePopup(name, link) {
 function generateCardWithImage(imageObject) {
   const imageElement = new Card(userID, imageObject, "#image-template", {
     handleCardClick: openLargeImagePopup,
-    handleAddLike: (id) =>
-    {
+    handleAddLike: (id) => {
       api.likeCard(id)
         .then((res) => {
           imageElement.toggleLike(res.likes.length);
-      });
+        })
+        .catch((error) => console.log("Error from likeCard:", error));
     },
     handleRemoveLike: (id) => {
       api.unLikeCard(id)
         .then((res) => {
           imageElement.toggleLike(res.likes.length);
-      });
+        })
+        .catch((error) => console.log("Error from unLikeCard:", error));
     },
     handleBinClick: (id) => {
       deleteCardAlert.open();
       deleteCardAlert.submitRequest(() => {
-      api.deleteImage(id)
-        .then((res) => {
-          imageElement.deleteCard();
-        });
+        api.deleteImage(id)
+         .then((res) => {
+           imageElement.deleteCard();
+           deleteCardAlert.close();
+         })
+         .catch((error) => console.log("Error from deleteImage:", error));
       });
     },
   });
@@ -104,8 +108,10 @@ const initiateImagePopup = new PopupWithForm(".popup_add-image",
     api.addNewImage(imageData)
     .then((res) => {
       server.addItem(generateCardWithImage(res));
-      initiateImagePopup.renderProgress(false);
+      initiateImagePopup.close();
     })
+    .catch((error) => console.log("Error from addNewImage:", error))
+    .finally(() => initiateImagePopup.renderProgress(false));
   }
 });
 
@@ -114,18 +120,17 @@ const initiateProfileImagePopup = new PopupWithForm(".popup_edit-profile-image",
   submitHandler: (link) => {
     api.editProfileImage(link)
     .then((res) => {
-      document.querySelector(".profile__image").src = res.avatar;
-      initiateProfileImagePopup.renderProgress(false);
+      userInfo.setUserInfo(res);
+      initiateProfileImagePopup.close();
     })
+    .catch((error) => console.log("Error from editProfileImage:", error))
+    .finally(() => initiateProfileImagePopup.renderProgress(false));
   }
 });
 
 initiateProfileImagePopup.setEventListeners();
 
 editProfileImageBtn.addEventListener("click", () => {
-  const currentInfo = userInfo.getUserInfo();
-  userProfileImageInput.value = currentInfo.avatar;
-
   edidProfileImageformValidator.clearValidationErrors();
   edidProfileImageformValidator.toggleSubmitState();
 
@@ -152,8 +157,10 @@ const initiateProfilePopup = new PopupWithForm(".popup_profile", {
     api.setProfileInfo(userInputs)
     .then((res) => {
       userInfo.setUserInfo(res);
-      initiateProfilePopup.renderProgress(false);
-    });
+      initiateProfilePopup.close();
+    })
+    .catch((error) => console.log("Error from setProfileInfo:", error))
+    .finally(() => initiateProfilePopup.renderProgress(false));
   },
 });
 
